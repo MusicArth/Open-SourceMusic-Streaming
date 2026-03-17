@@ -19,7 +19,7 @@ const Index = () => {
   };
 
   return (
-    <div className="p-6 pb-8">
+    <div className="p-4 md:p-6 pb-8">
       <motion.h1
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

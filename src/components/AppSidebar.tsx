@@ -1,5 +1,6 @@
-import { Home, Search, Library, ListMusic, Heart } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Home, Search, Library, ListMusic, Heart, Menu, X } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
 import { usePlayerStore } from "@/store/playerStore";
 
 export function AppSidebar() {
@@ -14,7 +15,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <aside className="w-64 shrink-0 h-full flex flex-col gap-2 p-2">
+    <aside className="hidden md:flex w-64 shrink-0 h-full flex-col gap-2 p-2">
       {/* Navigation */}
       <nav className="bg-surface rounded-lg p-4 space-y-1">
         {navItems.map((item) => (
@@ -81,5 +82,35 @@ export function AppSidebar() {
         )}
       </div>
     </aside>
+  );
+}
+
+/** Mobile bottom navigation bar */
+export function MobileNav() {
+  const location = useLocation();
+  const navItems = [
+    { icon: Home, label: "Home", to: "/" },
+    { icon: Search, label: "Search", to: "/search" },
+    { icon: Library, label: "Library", to: "/queue" },
+  ];
+
+  return (
+    <nav className="md:hidden flex items-center justify-around bg-surface border-t border-border py-2">
+      {navItems.map((item) => {
+        const isActive = location.pathname === item.to;
+        return (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            className={`flex flex-col items-center gap-0.5 px-4 py-1 text-[10px] font-medium transition-colors duration-150 ${
+              isActive ? "text-foreground" : "text-muted-foreground"
+            }`}
+          >
+            <item.icon className="h-5 w-5" />
+            <span>{item.label}</span>
+          </NavLink>
+        );
+      })}
+    </nav>
   );
 }
