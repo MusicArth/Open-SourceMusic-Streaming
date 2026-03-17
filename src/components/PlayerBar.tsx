@@ -52,17 +52,19 @@ export function PlayerBar() {
           url={currentTrack?.youtubeUrl}
           playing={isPlaying}
           volume={volume}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
+          onProgress={handleProgress as any}
+          onDuration={handleDuration as any}
           onEnded={handleEnded}
           width={0}
           height={0}
           config={{
-            playerVars: {
-              autoplay: 1,
-              controls: 0,
-              disablekb: 1,
-              modestbranding: 1,
+            youtube: {
+              playerVars: {
+                autoplay: 1,
+                controls: 0,
+                disablekb: 1,
+                modestbranding: 1,
+              },
             },
           }}
         />
