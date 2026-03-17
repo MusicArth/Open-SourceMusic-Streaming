@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppSidebar, MobileNav } from "@/components/AppSidebar";
 import { PlayerBar } from "@/components/PlayerBar";
 import Index from "./pages/Index";
 import SearchPage from "./pages/Search";
@@ -19,7 +19,7 @@ const App = () => (
         <div className="h-screen flex flex-col overflow-hidden bg-background">
           <div className="flex flex-1 overflow-hidden">
             <AppSidebar />
-            <main className="flex-1 overflow-y-auto bg-gradient-to-b from-elevated/50 to-background rounded-lg m-2 ml-0">
+            <main className="flex-1 overflow-y-auto bg-gradient-to-b from-elevated/50 to-background md:rounded-lg md:m-2 md:ml-0">
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/search" element={<SearchPage />} />
@@ -29,6 +29,7 @@ const App = () => (
             </main>
           </div>
           <PlayerBar />
+          <MobileNav />
         </div>
       </BrowserRouter>
     </TooltipProvider>
