@@ -1,11 +1,13 @@
 import { useRef, useCallback } from "react";
-import ReactPlayer from "react-player/lazy";
+import ReactPlayerImport from "react-player/youtube";
 import {
   Play, Pause, SkipBack, SkipForward, Volume2, VolumeX,
   Shuffle, Repeat, Repeat1, Heart
 } from "lucide-react";
 import { usePlayerStore } from "@/store/playerStore";
 import { Slider } from "@/components/ui/slider";
+
+const ReactPlayer = (ReactPlayerImport as any).default ?? ReactPlayerImport;
 
 function formatTime(seconds: number) {
   const m = Math.floor(seconds / 60);
